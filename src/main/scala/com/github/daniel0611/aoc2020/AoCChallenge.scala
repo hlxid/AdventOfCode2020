@@ -10,5 +10,10 @@ trait AoCChallenge[P, R] {
     content
   }
 
+  def getDefaultPuzzleInput: P
+
   def run(parameter: P): R
+
+  //noinspection ScalaUnusedSymbol
+  def main(args: Array[String]): Unit = println(run(getDefaultPuzzleInput))
 }
