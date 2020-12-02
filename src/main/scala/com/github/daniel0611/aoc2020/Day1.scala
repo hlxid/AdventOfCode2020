@@ -1,8 +1,16 @@
 package com.github.daniel0611.aoc2020
 
 
-object Day1A extends AoCChallenge[List[Int], Int] {
-  def run(in: List[Int]): Int = {
+object Day1 extends AoCChallenge[List[Int], Int] {
+  def day = 1
+
+  def getPuzzleInput: List[Int] =
+    readInput()
+      .split("\\n")
+      .map(_.toInt)
+      .toList
+
+  def runA(in: List[Int]): Int = {
     val pairs = for (a <- in; b <- in; if a != b) yield (a, b)
     pairs.foreach(pair => {
       val a = pair._1
@@ -14,15 +22,7 @@ object Day1A extends AoCChallenge[List[Int], Int] {
     throw new Exception("no pair with sum of 2020 found!")
   }
 
-  override def getDefaultPuzzleInput: List[Int] =
-    readInput(1)
-      .split("\\n")
-      .map(_.toInt)
-      .toList
-}
-
-object Day1B extends AoCChallenge[List[Int], Int] {
-  def run(in: List[Int]): Int = {
+  def runB(in: List[Int]): Int = {
     val triples = for (a <- in; b <- in; c <- in; if a != b && b != c) yield (a, b, c)
     triples.foreach(triple => {
       val a = triple._1
@@ -34,6 +34,5 @@ object Day1B extends AoCChallenge[List[Int], Int] {
     })
     throw new Exception("no triple with sum of 2020 found!")
   }
-
-  override def getDefaultPuzzleInput: List[Int] = Day1A.getDefaultPuzzleInput
 }
+

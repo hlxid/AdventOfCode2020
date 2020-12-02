@@ -4,10 +4,12 @@ import org.scalatest.flatspec._
 import org.scalatest.matchers.should
 
 class AoCChallengeTest extends AnyFlatSpec with should.Matchers with AoCChallenge[Unit, Boolean] {
-  override def run(p: Unit) = false
-  override def getDefaultPuzzleInput: Unit = ()
+  override def runA(p: Unit) = false
+  override def runB(p: Unit) = true
+  override def getPuzzleInput: Unit = ()
+  override def day = 0
 
   it should "read a file in the input directory correctly" in {
-    readInput(0) should be("test123\ntest456")
+    readInput() should be("test123\ntest456")
   }
 }

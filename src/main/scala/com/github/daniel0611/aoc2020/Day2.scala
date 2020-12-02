@@ -1,7 +1,5 @@
 package com.github.daniel0611.aoc2020
 
-import scala.util.matching.Regex
-
 case class PasswordPolicy(char: Char, left: Int, right: Int, password: String) {
   def matchesPolicyOld(): Boolean = {
     val count = password.count(_ == char)
@@ -11,11 +9,13 @@ case class PasswordPolicy(char: Char, left: Int, right: Int, password: String) {
   def matchesPolicyNew(): Boolean = password(left - 1) == char ^ password(right - 1) == char
 }
 
-object Day2A extends AoCChallenge[List[PasswordPolicy], Int] {
-  val passwordPolicyRegex: Regex = "([0-9]+)-([0-9]+) (.): ([a-z]+)".r
+object Day2 extends AoCChallenge[List[PasswordPolicy], Int] {
+  private val passwordPolicyRegex = "([0-9]+)-([0-9]+) (.): ([a-z]+)".r
 
-  override def getDefaultPuzzleInput: List[PasswordPolicy] =
-    readInput(2)
+  override def day = 2
+
+  override def getPuzzleInput: List[PasswordPolicy] =
+    readInput()
       .split("\\n")
       .flatMap {
         case passwordPolicyRegex(left, right, char, password) =>
@@ -26,15 +26,11 @@ object Day2A extends AoCChallenge[List[PasswordPolicy], Int] {
       }
       .toList
 
-  override def run(list: List[PasswordPolicy]): Int = {
+  override def runA(list: List[PasswordPolicy]): Int = {
     list.count(_.matchesPolicyOld())
   }
-}
 
-object Day2B extends AoCChallenge[List[PasswordPolicy], Int] {
-  override def getDefaultPuzzleInput: List[PasswordPolicy] = Day2A.getDefaultPuzzleInput
-
-  override def run(list: List[PasswordPolicy]): Int = {
+  override def runB(list: List[PasswordPolicy]): Int = {
     list.count(_.matchesPolicyNew())
   }
 }

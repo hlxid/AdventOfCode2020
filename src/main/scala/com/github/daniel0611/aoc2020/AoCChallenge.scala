@@ -3,17 +3,31 @@ package com.github.daniel0611.aoc2020
 import scala.io.Source
 
 trait AoCChallenge[P, R] {
-  protected def readInput(day: Int): String = {
+  protected def readInput(): String = {
     val file = Source.fromFile(s"input/day$day.txt")
     val content = file.getLines().mkString("\n")
     file.close()
     content
   }
 
-  def getDefaultPuzzleInput: P
+  def getPuzzleInput: P
 
-  def run(parameter: P): R
+  def runA(parameter: P): R
+
+  def runB(parameter: P): R
+
+  def day: Int
 
   //noinspection ScalaUnusedSymbol
-  def main(args: Array[String]): Unit = println(run(getDefaultPuzzleInput))
+  def main(args: Array[String]): Unit = {
+    val in = getPuzzleInput
+    execPuzzle(runA, in, 'A')
+    execPuzzle(runB, in, 'B')
+  }
+
+  private def execPuzzle(exec: P => R, input: P, desc: Char): Unit = try {
+    println(s"Day $day $desc: ${exec(input)}")
+  } catch {
+    case _: NotImplementedError => println(s"Day $day $desc hasn't been implemented yet.")
+  }
 }
