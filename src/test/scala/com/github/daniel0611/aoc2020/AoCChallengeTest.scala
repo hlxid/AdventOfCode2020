@@ -8,6 +8,6 @@ class AoCChallengeTest extends AnyFlatSpec with should.Matchers with AoCChalleng
   override def getDefaultPuzzleInput: Unit = ()
 
   it should "read a file in the input directory correctly" in {
-    readInput("test.txt") should be("test123\ntest456")
+    readInput(0) should be("test123\ntest456")
   }
 }

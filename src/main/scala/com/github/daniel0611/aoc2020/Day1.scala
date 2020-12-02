@@ -15,7 +15,7 @@ object Day1A extends AoCChallenge[List[Int], Int] {
   }
 
   override def getDefaultPuzzleInput: List[Int] =
-    readInput("day1.txt")
+    readInput(1)
       .split("\\n")
       .map(_.toInt)
       .toList
