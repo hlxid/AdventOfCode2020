@@ -14,17 +14,14 @@ object Day2 extends AoCChallenge[List[PasswordPolicy], Int] {
 
   override def day = 2
 
-  override def getPuzzleInput: List[PasswordPolicy] =
-    readInput()
-      .split("\\n")
-      .flatMap {
+  override def parsePuzzleInput(in: List[String]): List[PasswordPolicy] =
+    in.flatMap {
         case passwordPolicyRegex(left, right, char, password) =>
           Some(PasswordPolicy(char.head, left.toInt, right.toInt, password))
         case t =>
           println(s"Invalid: $t")
           None
       }
-      .toList
 
   override def runA(list: List[PasswordPolicy]): Int = {
     list.count(_.matchesPolicyOld())

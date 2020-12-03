@@ -3,14 +3,14 @@ package com.github.daniel0611.aoc2020
 import scala.io.Source
 
 trait AoCChallenge[P, R] {
-  protected def readInput(): String = {
+  protected def readInput(): List[String] = {
     val file = Source.fromFile(s"input/day$day.txt")
-    val content = file.getLines().mkString("\n")
+    val content = file.getLines().toList
     file.close()
     content
   }
 
-  def getPuzzleInput: P
+  def parsePuzzleInput(input: List[String]) : P
 
   def runA(parameter: P): R
 
@@ -20,7 +20,7 @@ trait AoCChallenge[P, R] {
 
   //noinspection ScalaUnusedSymbol
   def main(args: Array[String]): Unit = {
-    val in = getPuzzleInput
+    val in = parsePuzzleInput(readInput())
     execPuzzle(runA, in, 'A')
     execPuzzle(runB, in, 'B')
   }
