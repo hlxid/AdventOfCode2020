@@ -10,11 +10,11 @@ class Day2Test extends AnyFlatSpec with should.Matchers {
     PasswordPolicy('c', 2, 9, "ccccccccc"),
   )
 
-  it should "A should correctly compute the given sample" in {
+  "A" should "correctly compute the given sample" in {
     Day2.runA(testInput) should be(2)
   }
 
-  it should "B should correctly compute the given sample" in {
+  "B" should "correctly compute the given sample" in {
     Day2.runB(testInput) should be(1)
   }
 }

@@ -13,11 +13,11 @@ class Day1Test extends AnyFlatSpec with should.Matchers {
     1456,
   )
 
-  it should "A should correctly compute the given sample" in {
+  "A" should "correctly compute the given sample" in {
     Day1.runA(testInput) should be(514579)
   }
 
-  it should "B should correctly compute the given sample" in {
+  "B" should "correctly compute the given sample" in {
     Day1.runB(testInput) should be(241861950)
   }
 }

@@ -12,9 +12,9 @@ trait AoCChallenge[P, R] {
 
   def parsePuzzleInput(input: List[String]) : P
 
-  def runA(parameter: P): R
+  def runA(input: P): R
 
-  def runB(parameter: P): R
+  def runB(input: P): R
 
   def day: Int
 

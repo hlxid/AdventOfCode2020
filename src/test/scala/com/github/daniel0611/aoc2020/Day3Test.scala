@@ -16,11 +16,11 @@ class Day3Test extends AnyFlatSpec with should.Matchers {
                 |#...##....#
                 |.#..#...#.#""".stripMargin
 
-  it should "A should correctly compute the given sample" in {
+  "A" should "correctly compute the given sample" in {
     Day3.runA(Day3.parsePuzzleInput(input.split("\\n").toList)) should be(7)
   }
 
-  it should "B should correctly compute the given sample" in {
+  "B" should "correctly compute the given sample" in {
     Day3.runB(Day3.parsePuzzleInput(input.split("\\n").toList)) should be(336)
   }
 }
