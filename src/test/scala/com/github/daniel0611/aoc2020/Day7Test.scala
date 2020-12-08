@@ -36,11 +36,11 @@ class Day7Test extends AnyFlatSpec with should.Matchers {
     ))
   }
 
-    "A" should "correctly compute the given sample" in {
-      Day7.runA(Day7.parsePuzzleInput(input1)) should be(4)
-    }
+  "A" should "correctly compute the given sample" in {
+    Day7.runA(Day7.parsePuzzleInput(input1)) should be(4)
+  }
 
-    "B" should "correctly compute the given sample" in {
-      Day7.runB(Day7.parsePuzzleInput(input2)) should be(126)
-    }
+  "B" should "correctly compute the given sample" in {
+    Day7.runB(Day7.parsePuzzleInput(input2)) should be(126)
+  }
 }
