@@ -5,7 +5,7 @@ import scala.annotation.tailrec
 case class Console(instructions: List[Instruction], state: CpuState = CpuState(), executedInstructions: Set[Int] = Set()) {
   @tailrec
   final def run(): Console = {
-    if(isLooping || isDone) return this
+    if (isLooping || isDone) return this
     val newState = step(state)
     copy(state = newState, executedInstructions = executedInstructions + state.pc).run()
   }
@@ -64,7 +64,7 @@ object Day8 extends AoCChallenge[List[Instruction], Int] {
         case _ => true
       }
       .map(a => {
-        val reversedInstr = a._1 match{
+        val reversedInstr = a._1 match {
           case i: NopInstruction => new JmpInstruction(i.param)
           case i: JmpInstruction => new NopInstruction(i.param)
           case _ => throw new Exception("invalid instruction")

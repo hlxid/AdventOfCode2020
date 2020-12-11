@@ -10,7 +10,7 @@ trait AoCChallenge[P, R] {
     content
   }
 
-  def parsePuzzleInput(input: List[String]) : P
+  def parsePuzzleInput(input: List[String]): P
 
   def runA(input: P): R
 

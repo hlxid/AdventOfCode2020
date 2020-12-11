@@ -59,7 +59,7 @@ class Day4Test extends AnyFlatSpec with should.Matchers {
     val invalidInput = Day4.parsePuzzleInput(invalidPassports.linesIterator.toList)
     val validInput = Day4.parsePuzzleInput(validPassports.linesIterator.toList)
 
-    Day4.runB(invalidInput) should be (0)
-    Day4.runB(validInput) should be (4)
+    Day4.runB(invalidInput) should be(0)
+    Day4.runB(validInput) should be(4)
   }
 }

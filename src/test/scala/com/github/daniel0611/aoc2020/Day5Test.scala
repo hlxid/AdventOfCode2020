@@ -21,6 +21,6 @@ class Day5Test extends AnyFlatSpec with should.Matchers {
   }
 
   "B" should "correctly compute the given sample" in {
-    Day5.runB(Day5.parsePuzzleInput(input.keys.toList)) should be (120)
+    Day5.runB(Day5.parsePuzzleInput(input.keys.toList)) should be(120)
   }
 }

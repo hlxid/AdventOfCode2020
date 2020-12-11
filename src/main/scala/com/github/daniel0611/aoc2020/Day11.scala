@@ -4,6 +4,7 @@ import scala.annotation.tailrec
 
 sealed case class Seat(char: Char) {
   def isOccupied: Boolean = char == '#'
+
   def isFloor: Boolean = char == '.'
 
   def getNextState(adjacent: List[Seat], minSeatsToMove: Int): Seat = char match {
@@ -33,7 +34,7 @@ case class SeatLayout(seats: List[List[Seat]]) {
       .map(index => seats(index._1)(index._2))
   }
 
-  private def isValidIndex(index: (Int, Int)): Boolean =seats.indices.contains(index._1) && seats.head.indices.contains(index._2)
+  private def isValidIndex(index: (Int, Int)): Boolean = seats.indices.contains(index._1) && seats.head.indices.contains(index._2)
 
   private def getAdjacentSeatsB(index: (Int, Int)): List[Seat] = {
     adjacentShift.flatMap(shift => getAdjacentSeatsBDirection(index, shift))
@@ -43,9 +44,9 @@ case class SeatLayout(seats: List[List[Seat]]) {
   private def getAdjacentSeatsBDirection(index: (Int, Int), shift: (Int, Int), multiplier: Int = 1): Option[Seat] = {
     val multipliedShift = (shift._1 * multiplier, shift._2 * multiplier)
     val shiftedIndex = (index._1 + multipliedShift._1, index._2 + multipliedShift._2)
-    if(isValidIndex(shiftedIndex)) {
+    if (isValidIndex(shiftedIndex)) {
       val seat = seats(shiftedIndex._1)(shiftedIndex._2)
-      if(seat.isFloor) getAdjacentSeatsBDirection(index, shift, multiplier + 1)
+      if (seat.isFloor) getAdjacentSeatsBDirection(index, shift, multiplier + 1)
       else Some(seat)
     } else None
   }

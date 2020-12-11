@@ -33,7 +33,7 @@ object Day7 extends AoCChallenge[Map[String, List[(Int, String)]], Int] {
 
   private def canHoldBag(bags: Map[String, List[(Int, String)]], bag: String, target: String): Boolean = {
     val recipes = bags(bag)
-    if(bag == target) true
+    if (bag == target) true
     else recipes.exists(b => canHoldBag(bags, b._2, target))
   }
 
@@ -43,7 +43,7 @@ object Day7 extends AoCChallenge[Map[String, List[(Int, String)]], Int] {
 
   private def getSubBagCount(bags: Map[String, List[(Int, String)]], searchBag: String): Int = {
     val recipes = bags(searchBag)
-    if(recipes.isEmpty) 1
+    if (recipes.isEmpty) 1
     else recipes.map(b => b._1 * getSubBagCount(bags, b._2)).sum + 1 // don't forget this bag
   }
 
