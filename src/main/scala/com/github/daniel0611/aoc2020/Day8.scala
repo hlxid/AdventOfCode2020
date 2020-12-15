@@ -2,7 +2,7 @@ package com.github.daniel0611.aoc2020
 
 import scala.annotation.tailrec
 
-case class Console(instructions: List[Instruction], state: CpuState = CpuState(), executedInstructions: Set[Int] = Set()) {
+case class Console(instructions: List[CpuInstruction], state: CpuState = CpuState(), executedInstructions: Set[Int] = Set()) {
   @tailrec
   final def run(): Console = {
     if (isLooping || isDone) return this
@@ -19,32 +19,32 @@ case class Console(instructions: List[Instruction], state: CpuState = CpuState()
 
 case class CpuState(pc: Int = 0, accumulator: Int = 0)
 
-abstract sealed case class Instruction(param: Int) {
+abstract sealed case class CpuInstruction(param: Int) {
   def execute(state: CpuState): CpuState
 }
 
-object Instruction {
+object CpuInstruction {
 
-  class NopInstruction(param: Int) extends Instruction(param) {
+  class NopInstruction(param: Int) extends CpuInstruction(param) {
     override def execute(state: CpuState): CpuState = state.copy(pc = state.pc + 1)
   }
 
-  class AccInstruction(param: Int) extends Instruction(param) {
+  class AccInstruction(param: Int) extends CpuInstruction(param) {
     override def execute(state: CpuState): CpuState = state.copy(pc = state.pc + 1, accumulator = state.accumulator + param)
   }
 
-  class JmpInstruction(param: Int) extends Instruction(param) {
+  class JmpInstruction(param: Int) extends CpuInstruction(param) {
     override def execute(state: CpuState): CpuState = state.copy(pc = state.pc + param)
   }
 
 }
 
-import com.github.daniel0611.aoc2020.Instruction._
+import com.github.daniel0611.aoc2020.CpuInstruction._
 
-object Day8 extends AoCChallenge[List[Instruction], Int] {
+object Day8 extends AoCChallenge[List[CpuInstruction], Int] {
   override def day: Int = 8
 
-  override def parsePuzzleInput(input: List[String]): List[Instruction] =
+  override def parsePuzzleInput(input: List[String]): List[CpuInstruction] =
     input.map(rawInstr => {
       val parts = rawInstr.split(" ")
       (parts.head, parts(1).toInt) match {
@@ -55,9 +55,9 @@ object Day8 extends AoCChallenge[List[Instruction], Int] {
       }
     })
 
-  override def runA(instr: List[Instruction]): Int = Console(instr).run().state.accumulator
+  override def runA(instr: List[CpuInstruction]): Int = Console(instr).run().state.accumulator
 
-  override def runB(instr: List[Instruction]): Int =
+  override def runB(instr: List[CpuInstruction]): Int =
     instr.zipWithIndex
       .filter {
         case (_: AccInstruction, _) => false
